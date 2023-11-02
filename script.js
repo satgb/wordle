@@ -12,8 +12,8 @@ console.log(word.join(""));
 
 document.addEventListener('keyup', (event) => 
 {
-	if(guessNumber === 6)
-  	return;
+  if(guessNumber === 6)
+    return;
   
   alert.innerText = "";
 	let key = String(event.key);
@@ -53,7 +53,7 @@ function setupBoard()
 
 function addLetter(letter)
 {
-	if(tileNumber === 5)
+  if(tileNumber === 5)
   	return;
     
   let tile = document.getElementsByClassName("row")[guessNumber].children[tileNumber];
@@ -64,8 +64,8 @@ function addLetter(letter)
 
 function removeLetter()
 {
-    if(tileNumber === 0)
-  	    return;
+  if(tileNumber === 0)
+      return;
   
   let tile = document.getElementsByClassName("row")[guessNumber].children[--tileNumber];
   tile.textContent = "";
