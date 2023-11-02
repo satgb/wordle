@@ -16,9 +16,9 @@ document.addEventListener('keyup', (event) =>
     return;
   
   alert.innerText = "";
-	let key = String(event.key);
-	
-	if(key === "Enter")
+  let key = String(event.key);
+
+  if(key === "Enter")
     checkGuess();
   	
   if(key === "Backspace")
@@ -27,23 +27,23 @@ document.addEventListener('keyup', (event) =>
   //g: group - return all matches 
   //i: ignore case
   if(key.match(/[a-z]/gi) !== null && key.length === 1)
-  	addLetter(key.toLowerCase());
+    addLetter(key.toLowerCase());
   
 });
 
 function setupBoard()
 {
   let board = document.getElementById("board");
-  
+
   for(let i = 0; i < 6; i++)
   {
-  	let row = document.createElement("div");
+    let row = document.createElement("div");
     row.className = "row";
     
     for(let j = 0; j < 5; j++)
     {
-    	let tile = document.createElement("div");
-			tile.className = "tile";
+      let tile = document.createElement("div");
+		  tile.className = "tile";
       row.appendChild(tile);
     }
     
@@ -54,7 +54,7 @@ function setupBoard()
 function addLetter(letter)
 {
   if(tileNumber === 5)
-  	return;
+    return;
     
   let tile = document.getElementsByClassName("row")[guessNumber].children[tileNumber];
   tile.textContent = letter;
@@ -65,40 +65,40 @@ function addLetter(letter)
 function removeLetter()
 {
   if(tileNumber === 0)
-      return;
+    return;
   
   let tile = document.getElementsByClassName("row")[guessNumber].children[--tileNumber];
   tile.textContent = "";
-	guess.pop();
+  guess.pop();
 }
 
 function checkGuess()
 {
-	if(guess.length !== 5)
+  if(guess.length !== 5)
   {
-  	alert.innerText = "Not enough letters";
-  	return;
+    alert.innerText = "Not enough letters";
+    return;
   }	
     
   //check if guess is an actual word
-  if (!WORDS.includes(guess.join("")))
+  if(!WORDS.includes(guess.join("")))
   {
     alert.innerText = "Not in word list";
     return;
   }
 
-	/*if(guessNumber > 0 && modeBox.checked)
+  /*if(guessNumber > 0 && modeBox.checked)
   {
-  	console.log(guessNumber);
+    console.log(guessNumber);
   }
   */
 
   //clone arrays for editing 
   let w = [...word];	
   let g = [...guess];	
-	let row = document.getElementsByClassName("row")[guessNumber];
+  let row = document.getElementsByClassName("row")[guessNumber];
   let tile = row.children;
- 	let letterPosition;
+  let letterPosition;
 
   //look for correct letters
   for(let i = 0; i < 5; i++)
@@ -113,40 +113,40 @@ function checkGuess()
   //look for incorrect letters
   for(let i = 0; i < 5; i++)
   {
-  	if(g[i] !== "#")	//skip checked/correct letters
+    if(g[i] !== "#")	//skip checked/correct letters
     {
       letterPosition = w.indexOf(g[i]);
       if(letterPosition === -1)
       {
-				tile[i].style.backgroundColor = "lightgray";
+        tile[i].style.backgroundColor = "lightgray";
       }
       else
       {
         w[letterPosition] = g[i] = "#";
-	      tile[i].style.backgroundColor = "yellow";
+        tile[i].style.backgroundColor = "yellow";
       }
     }
   }
-	
-	if(guess.join("") === word.join(""))
+
+  if(guess.join("") === word.join(""))
   {
-		alert.innerText = "Nice";
+    alert.innerText = "Nice";
     guessNumber = 5;
   }
   else
   {
   	if(guessNumber === 5)	//no guesses left
     {
-			alert.innerText = "The word was: " + word.join("");
+      alert.innerText = "The word was: " + word.join("");
     }
     else
     {
-    	guess = [];
-    	tileNumber = 0;
+      guess = [];
+      tileNumber = 0;
     }
   }
   
-  guessNumber++; 
+  guessNumber++;
   //modeBox.disabled = true;
 }
 
