@@ -43,7 +43,7 @@ function setupBoard()
     for(let j = 0; j < 5; j++)
     {
       let tile = document.createElement("div");
-		  tile.className = "tile";
+      tile.className = "tile";
       row.appendChild(tile);
     }
     
@@ -135,7 +135,7 @@ function checkGuess()
   }
   else
   {
-  	if(guessNumber === 5)	//no guesses left
+    if(guessNumber === 5)	//no guesses left
     {
       alert.innerText = "The word was: " + word.join("");
     }
